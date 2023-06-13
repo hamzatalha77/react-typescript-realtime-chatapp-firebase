@@ -16,10 +16,12 @@ const App = () => {
   return (
     <>
       {room ? (
-        <div></div>
+        <div>Chat</div>
       ) : (
         <div className="room">
-          <label></label>
+          <label>Enter Room Name</label>
+          <input />
+          <button>Enter Chat</button>
         </div>
       )}
     </>
