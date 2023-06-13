@@ -20,7 +20,7 @@ const App = () => {
       ) : (
         <div className="room">
           <label>Enter Room Name</label>
-          <input />
+          <input onChange={(e) => setRoom(e.target.value)} />
           <button>Enter Chat</button>
         </div>
       )}
