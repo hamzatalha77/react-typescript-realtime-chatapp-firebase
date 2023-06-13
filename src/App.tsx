@@ -3,6 +3,7 @@ import Auth from './components/Auth'
 import Cookies from 'universal-cookie'
 
 const cookies = new Cookies()
+
 const App = () => {
   const [isAuth, setIsAuth] = useState(cookies.get('auth-token'))
   const [room, setRoom] = useState(null)
@@ -10,7 +11,7 @@ const App = () => {
   if (!isAuth) {
     return (
       <>
-        <Auth />
+        <Auth setIsAuth={setIsAuth} />
       </>
     )
   }
