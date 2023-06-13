@@ -5,9 +5,23 @@ import Cookies from 'universal-cookie'
 const cookies = new Cookies()
 const App = () => {
   const [isAuth, setIsAuth] = useState(cookies.get('auth-token'))
+  const [room, setRoom] = useState('')
+  if (!isAuth) {
+    return (
+      <>
+        <Auth />
+      </>
+    )
+  }
   return (
     <>
-      <Auth />
+      {room ? (
+        <div></div>
+      ) : (
+        <div className="room">
+          <label></label>
+        </div>
+      )}
     </>
   )
 }
