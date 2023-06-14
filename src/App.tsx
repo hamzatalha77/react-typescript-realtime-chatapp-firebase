@@ -21,10 +21,10 @@ const App = () => {
   return (
     <>
       {room ? (
-        <div>Chat</div>
+        <div className="bg-slate-600 caret-lime-600">Chat</div>
       ) : (
         <div className="room">
-          <label>Enter Room Name</label>
+          <label className="w-8">Enter Room Name</label>
           <input ref={roomInputRef} />
           <button onClick={() => setRoom(roomInputRef.current!.value)}>
             Enter Chat
