@@ -1,6 +1,7 @@
 import React, { useState, useRef } from 'react'
 import Auth from './components/Auth'
 import Cookies from 'universal-cookie'
+import Chat from './components/Chat'
 
 const cookies = new Cookies()
 
@@ -13,6 +14,7 @@ const App = () => {
     return (
       <>
         <Auth setIsAuth={setIsAuth} />
+        <Chat />
       </>
     )
   }
