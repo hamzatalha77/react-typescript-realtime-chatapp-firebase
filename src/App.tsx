@@ -6,8 +6,9 @@ const cookies = new Cookies()
 
 const App = () => {
   const [isAuth, setIsAuth] = useState(cookies.get('auth-token'))
-  const [room, setRoom] = useState(null)
-  const roomInputRef = useRef(null)
+  const [room, setRoom] = useState('')
+  const roomInputRef = useRef<HTMLInputElement>(null)
+
   if (!isAuth) {
     return (
       <>
@@ -23,7 +24,7 @@ const App = () => {
         <div className="room">
           <label>Enter Room Name</label>
           <input ref={roomInputRef} />
-          <button onClick={() => setRoom(roomInputRef.current?.value)}>
+          <button onClick={() => setRoom(roomInputRef.current!.value)}>
             Enter Chat
           </button>
         </div>
