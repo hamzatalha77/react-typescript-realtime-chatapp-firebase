@@ -23,7 +23,7 @@ const App = () => {
         <div className="room">
           <label>Enter Room Name</label>
           <input ref={roomInputRef} />
-          <button onClick={() => setRoom(roomInputRef.current.value)}>
+          <button onClick={() => setRoom(roomInputRef.current?.value)}>
             Enter Chat
           </button>
         </div>
