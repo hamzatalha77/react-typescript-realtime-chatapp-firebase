@@ -14,14 +14,13 @@ const App = () => {
     return (
       <>
         <Auth setIsAuth={setIsAuth} />
-        <Chat />
       </>
     )
   }
   return (
     <>
       {room ? (
-        <div>Chat</div>
+        <Chat />
       ) : (
         <div className="w-full h-screen bg-[#f2f2f2] flex justify-center items-center p-4">
           <div className="flex flex-col max-w-[600px] w-full">
