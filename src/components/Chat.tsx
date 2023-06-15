@@ -1,10 +1,15 @@
+import { addDoc, collection } from 'firebase/firestore'
 import React, { useState } from 'react'
+import { db } from '../firebase-config'
 
 const Chat = () => {
   const [newMessage, setNewMessage] = useState('')
 
-  const handleSubmit = (e: any) => {
+  const messagesRef = collection(db, 'messages')
+  const handleSubmit = async (e: any) => {
     e.preventDefault()
+    if (newMessage === '') return
+    await addDoc()
   }
   return (
     <div className="">
