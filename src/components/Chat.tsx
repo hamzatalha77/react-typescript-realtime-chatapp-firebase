@@ -6,10 +6,11 @@ const Chat = () => {
   const [newMessage, setNewMessage] = useState('')
 
   const messagesRef = collection(db, 'messages')
+
   const handleSubmit = async (e: any) => {
     e.preventDefault()
     if (newMessage === '') return
-    await addDoc()
+    await addDoc(messagesRef, {})
   }
   return (
     <div className="">
