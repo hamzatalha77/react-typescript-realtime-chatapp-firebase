@@ -57,6 +57,11 @@ const Chat = (props: any) => {
 
   return (
     <div className="w-full h-screen flex justify-center items-center p-4">
+      <div className="chat">
+        {messages.map((messages) => (
+          <h1>{messages.text}</h1>
+        ))}
+      </div>
       <form onSubmit={handleSubmit}>
         <div className="relative flex h-10 w-full min-w-[200px] max-w-[24rem]">
           <input
