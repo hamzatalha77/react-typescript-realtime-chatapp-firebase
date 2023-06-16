@@ -11,8 +11,8 @@ import { auth, db } from '../firebase-config'
 
 const Chat = (props: any) => {
   const { room } = props
+  const [messages, setMessages] = useState([])
   const [newMessage, setNewMessage] = useState('')
-
   const messagesRef = collection(db, 'messages')
 
   useEffect(() => {
