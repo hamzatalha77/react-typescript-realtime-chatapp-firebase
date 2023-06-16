@@ -13,6 +13,7 @@ import { auth, db } from '../firebase-config'
 const Chat = (props: any) => {
   const { room } = props
   const [newMessage, setNewMessage] = useState('')
+  const [messages, setMessages] = useState([])
 
   const messagesRef = collection(db, 'messages')
 
@@ -23,6 +24,7 @@ const Chat = (props: any) => {
       snapshot.forEach((doc) => {
         messages.push({ ...doc.data(), id: doc.id })
       })
+      setMessages(messages)
     })
   }, [])
 
