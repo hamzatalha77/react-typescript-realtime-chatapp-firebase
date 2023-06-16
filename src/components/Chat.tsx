@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react'
 import {
   addDoc,
   collection,
-  doc,
   onSnapshot,
   query,
   serverTimestamp,
@@ -13,31 +12,15 @@ import { auth, db } from '../firebase-config'
 const Chat = (props: any) => {
   const { room } = props
   const [newMessage, setNewMessage] = useState('')
-  const [messages, setMessages] = useState([])
 
   const messagesRef = collection(db, 'messages')
 
   useEffect(() => {
-    const queryMessages = query(messagesRef, where('room', '==', room))
-    onSnapshot(queryMessages, (snapshot) => {
-      let messages = []
-      snapshot.forEach((doc) => {
-        messages.push({ ...doc.data(), id: doc.id })
-      })
-      setMessages(messages)
+    const queryMessage = query(messagesRef, where('room', '==', room))
+    onSnapshot(queryMessage, (sanpshot) => {
+      console.log('NEW MESSAGE')
     })
-  }, [messagesRef, room])
-
-  // useEffect(() => {
-  //   const q = query(messagesRef, where('room', '==', room)) // Add the correct query condition here
-  //   const unsubscribe = onSnapshot(q, (snapshot) => {
-  //     // Handle snapshot changes
-  //   })
-
-  //   return () => {
-  //     unsubscribe() // Unsubscribe from the snapshot listener when the component unmounts
-  //   }
-  // }, [messagesRef, room])
+  }, [])
 
   const handleSubmit = async (e: any) => {
     e.preventDefault()
@@ -57,11 +40,6 @@ const Chat = (props: any) => {
 
   return (
     <div className="w-full h-screen flex justify-center items-center p-4">
-      <div className="chat">
-        {messages.map((messages) => (
-          <h1>{messages.text}</h1>
-        ))}
-      </div>
       <form onSubmit={handleSubmit}>
         <div className="relative flex h-10 w-full min-w-[200px] max-w-[24rem]">
           <input
