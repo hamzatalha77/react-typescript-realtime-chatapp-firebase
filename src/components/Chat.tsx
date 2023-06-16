@@ -9,23 +9,33 @@ import {
 } from 'firebase/firestore'
 import { auth, db } from '../firebase-config'
 
+interface Message {
+  text: string
+  createdAt: any // Replace `any` with the appropriate type for timestamps
+  user: string
+  id: string
+}
+
 const Chat = (props: any) => {
   const { room } = props
-  const [messages, setMessages] = useState([])
-  const [newMessage, setNewMessage] = useState('')
+  const [messages, setMessages] = useState<Message[]>([])
+  const [newMessage, setNewMessage] = useState<string>('')
   const messagesRef = collection(db, 'messages')
 
   useEffect(() => {
     const queryMessage = query(messagesRef, where('room', '==', room))
-    onSnapshot(queryMessage, (sanpshot) => {
-      let messages = []
-      sanpshot.forEach((doc) => {
-        messages.push({ ...doc.data(), id: doc.id })
+    const unsubscribe = onSnapshot(queryMessage, (snapshot) => {
+      const newMessages: Message[] = []
+      snapshot.forEach((doc) => {
+        newMessages.push({ ...doc.data(), id: doc.id } as Message)
       })
+      setMessages(newMessages)
     })
-  }, [])
 
-  const handleSubmit = async (e: any) => {
+    return () => unsubscribe()
+  }, [room])
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     if (newMessage === '') return
 
@@ -43,6 +53,11 @@ const Chat = (props: any) => {
 
   return (
     <div className="w-full h-screen flex justify-center items-center p-4">
+      <div>
+        {messages.map((message) => (
+          <h1>{message.text} </h1>
+        ))}
+      </div>
       <form onSubmit={handleSubmit}>
         <div className="relative flex h-10 w-full min-w-[200px] max-w-[24rem]">
           <input
