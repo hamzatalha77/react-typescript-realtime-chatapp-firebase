@@ -1,5 +1,12 @@
-import React, { useState } from 'react'
-import { addDoc, collection, serverTimestamp } from 'firebase/firestore'
+import React, { useState, useEffect } from 'react'
+import {
+  addDoc,
+  collection,
+  onSnapshot,
+  query,
+  serverTimestamp,
+  where,
+} from 'firebase/firestore'
 import { auth, db } from '../firebase-config'
 
 const Chat = (props: any) => {
@@ -7,6 +14,11 @@ const Chat = (props: any) => {
   const [newMessage, setNewMessage] = useState('')
 
   const messagesRef = collection(db, 'messages')
+
+  useEffect(() => {
+    const queryMessage = query(messagesRef, where())
+    onSnapshot()
+  }, [])
 
   const handleSubmit = async (e: any) => {
     e.preventDefault()
