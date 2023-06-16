@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import {
   addDoc,
   collection,
+  doc,
   onSnapshot,
   query,
   serverTimestamp,
@@ -18,7 +19,10 @@ const Chat = (props: any) => {
   useEffect(() => {
     const queryMessages = query(messagesRef, where('room', '==', room))
     onSnapshot(queryMessages, (snapshot) => {
-      console.log('new Message')
+      let messages = []
+      snapshot.forEach((doc) => {
+        messages.push({ ...doc.data(), id: doc.id })
+      })
     })
   }, [])
 
