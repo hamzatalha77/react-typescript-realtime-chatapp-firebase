@@ -18,7 +18,10 @@ const Chat = (props: any) => {
   useEffect(() => {
     const queryMessage = query(messagesRef, where('room', '==', room))
     onSnapshot(queryMessage, (sanpshot) => {
-      console.log('NEW MESSAGE')
+      let messages = []
+      sanpshot.forEach((doc) => {
+        messages.push({ ...doc.data(), id: doc.id })
+      })
     })
   }, [])
 
