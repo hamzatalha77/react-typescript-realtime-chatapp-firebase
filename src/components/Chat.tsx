@@ -16,9 +16,15 @@ const Chat = (props: any) => {
   const messagesRef = collection(db, 'messages')
 
   useEffect(() => {
-    const queryMessage = query(messagesRef, where())
-    onSnapshot()
-  }, [])
+    const q = query(messagesRef, where('room', '==', room)) // Add the correct query condition here
+    const unsubscribe = onSnapshot(q, (snapshot) => {
+      // Handle snapshot changes
+    })
+
+    return () => {
+      unsubscribe() // Unsubscribe from the snapshot listener when the component unmounts
+    }
+  }, [messagesRef, room])
 
   const handleSubmit = async (e: any) => {
     e.preventDefault()
