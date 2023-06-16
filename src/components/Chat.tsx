@@ -26,7 +26,7 @@ const Chat = (props: any) => {
       })
       setMessages(messages)
     })
-  }, [])
+  }, [messagesRef, room])
 
   // useEffect(() => {
   //   const q = query(messagesRef, where('room', '==', room)) // Add the correct query condition here
