@@ -68,7 +68,8 @@ const Chat = (props: any) => {
           <div className="message" key={message.id}>
             <span>{message.user}</span>
             <h1>
-              {message.text}*{message.createdAt.toDate().toLocaleString()}
+              {message.text}
+              {/* *{message.createdAt.toDate().toLocaleString()} */}
             </h1>
           </div>
         ))}
