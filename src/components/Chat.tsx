@@ -8,12 +8,13 @@ import {
   where,
 } from 'firebase/firestore'
 import { auth, db } from '../firebase-config'
-
+import { firestore } from 'firebase/app'
 interface Message {
   text: string
-  createdAt: any // Replace `any` with the appropriate type for timestamps
+  // Replace `any` with the appropriate type for timestamps
   user: string
   id: string
+  createdAt: firestore.Timestamp
 }
 
 const Chat = (props: any) => {
@@ -61,7 +62,7 @@ const Chat = (props: any) => {
           <div className="message" key={message.id}>
             <span>{message.user}</span>
             <h1>
-              {message.text}*{message.createdAt}
+              {message.text}*{message.createdAt.toDate().toLocaleString()}
             </h1>
           </div>
         ))}
