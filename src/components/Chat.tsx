@@ -58,7 +58,9 @@ const Chat = (props: any) => {
       </div>
       <div>
         {messages.map((message) => (
-          <h1>{message.text} </h1>
+          <div className="message" key={message.id}>
+            <h1>{message.text} </h1>
+          </div>
         ))}
       </div>
       <form onSubmit={handleSubmit}>
