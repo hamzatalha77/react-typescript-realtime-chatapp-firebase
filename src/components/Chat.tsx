@@ -9,14 +9,14 @@ import {
   where,
 } from 'firebase/firestore'
 import { auth, db } from '../firebase-config'
-import { Timestamp } from 'firebase/firestore'
+// import { Timestamp } from 'firebase/firestore'
 
 interface Message {
   text: string
   // Replace `any` with the appropriate type for timestamps
   user: string
   id: string
-  createdAt: Timestamp
+  createdAt: any
 }
 
 const Chat = (props: any) => {
@@ -40,7 +40,7 @@ const Chat = (props: any) => {
     })
 
     return () => unsubscribe()
-  }, [room, messagesRef])
+  }, [room])
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
