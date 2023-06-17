@@ -53,6 +53,9 @@ const Chat = (props: any) => {
 
   return (
     <div className="w-full h-screen flex justify-center items-center p-4">
+      <div className="header">
+        <h1>Welcome to: {room}</h1>
+      </div>
       <div>
         {messages.map((message) => (
           <h1>{message.text} </h1>
