@@ -59,7 +59,10 @@ const Chat = (props: any) => {
       <div>
         {messages.map((message) => (
           <div className="message" key={message.id}>
-            <span>{message.user}</span> <h1>{message.text} </h1>
+            <span>{message.user}</span>
+            <h1>
+              {message.text}*{message.createdAt}
+            </h1>
           </div>
         ))}
       </div>
