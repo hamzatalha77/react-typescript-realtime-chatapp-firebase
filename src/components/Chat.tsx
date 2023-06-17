@@ -3,6 +3,7 @@ import {
   addDoc,
   collection,
   onSnapshot,
+  orderBy,
   query,
   serverTimestamp,
   where,
@@ -25,7 +26,11 @@ const Chat = (props: any) => {
   const messagesRef = collection(db, 'messages')
 
   useEffect(() => {
-    const queryMessage = query(messagesRef, where('room', '==', room))
+    const queryMessage = query(
+      messagesRef,
+      where('room', '==', room),
+      orderBy('createdAt')
+    )
     const unsubscribe = onSnapshot(queryMessage, (snapshot) => {
       const newMessages: Message[] = []
       snapshot.forEach((doc) => {
