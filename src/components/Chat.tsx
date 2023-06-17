@@ -8,13 +8,14 @@ import {
   where,
 } from 'firebase/firestore'
 import { auth, db } from '../firebase-config'
-import { firestore } from 'firebase/app'
+import { Timestamp } from 'firebase/firestore'
+
 interface Message {
   text: string
   // Replace `any` with the appropriate type for timestamps
   user: string
   id: string
-  createdAt: firestore.Timestamp
+  createdAt: Timestamp
 }
 
 const Chat = (props: any) => {
