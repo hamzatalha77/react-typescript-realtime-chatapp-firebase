@@ -8,10 +8,13 @@ const cookies = new Cookies()
 
 const App = () => {
   const [isAuth, setIsAuth] = useState(cookies.get('auth-token'))
-  const [room, setRoom] = useState('')
+  const [room, setRoom] = useState(null)
   const roomInputRef = useRef<HTMLInputElement>(null)
   const signUserOut = async () => {
     await signOut()
+    cookies.remove('auth-token')
+    setIsAuth(false)
+    setRoom(null)
   }
 
   if (!isAuth) {
