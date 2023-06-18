@@ -15,7 +15,7 @@ const App = () => {
     await signOut(auth)
     cookies.remove('auth-token')
     setIsAuth(false)
-    setRoom(null)
+    setRoom('')
   }
 
   if (!isAuth) {
