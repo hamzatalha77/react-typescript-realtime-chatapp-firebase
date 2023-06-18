@@ -3,6 +3,7 @@ import Auth from './components/Auth'
 import Cookies from 'universal-cookie'
 import Chat from './components/Chat'
 import { signOut } from 'firebase/auth'
+import { auth } from './firebase-config'
 
 const cookies = new Cookies()
 
@@ -11,7 +12,7 @@ const App = () => {
   const [room, setRoom] = useState(null)
   const roomInputRef = useRef<HTMLInputElement>(null)
   const signUserOut = async () => {
-    await signOut()
+    await signOut(auth)
     cookies.remove('auth-token')
     setIsAuth(false)
     setRoom(null)
