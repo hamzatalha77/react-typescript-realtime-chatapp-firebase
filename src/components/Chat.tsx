@@ -40,7 +40,7 @@ const Chat = (props: any) => {
     })
 
     return () => unsubscribe()
-  }, [room])
+  }, [room, messagesRef])
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
